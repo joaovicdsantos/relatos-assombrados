@@ -1,3 +1,4 @@
+import coreRoutes from './core/index.js';
 import apiRoutes from './api.js';
 
-export default [...apiRoutes];
+export default [...coreRoutes, ...apiRoutes];

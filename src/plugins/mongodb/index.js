@@ -11,6 +11,9 @@ const dbOpts = {
 export default async (server) => {
   await server.register({
     plugin: hapiMongo,
-    options: dbOpts,
+    options: {
+      url: 'mongodb://localhost:27017/relatos-assombrados',
+      decorate: true,
+    },
   });
 };

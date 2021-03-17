@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Início - Relatos Assombrados</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="http://www.assombrado.com.br/favicon.ico"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+
+  <body>
+    <header>
+      <nav class="transparent">
+        <div class="nav-wrapper">
+          <a href="/" class="brand-logo">Relatos Assombrados</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li>
+              <a href="/"><span>Início</span></a>
+            </li>
+            <li>
+              <a href="badges.html"><span>Últimos Relatos</span></a>
+            </li>
+            <li>
+              <a href="collapsible.html"><span>Vídeos</span></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <ul id="slide-out" class="sidenav">
+        <li>
+          <a href="/"><span>Início</span></a>
+        </li>
+        <li>
+          <a href="badges.html"><span>Últimos Relatos</span></a>
+        </li>
+        <li>
+          <a href="collapsible.html"><span>Vídeos</span></a>
+        </li>
+      </ul>
+      <a
+        href="#"
+        data-target="slide-out"
+        class="sidenav-trigger hide-on-med-and-up"
+        ><i class="material-icons">menu</i></a
+      >
+      <div class="banner hide-on-small-only"></div>
+    </header>
+    <main>
+      <section>
+        <h5 class="titulo">Últimos Relatos</h5>
+      </section>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.sidenav');
+        var instances = M.Sidenav.init(elems);
+      });
+    </script>
+  </body>
+</html>

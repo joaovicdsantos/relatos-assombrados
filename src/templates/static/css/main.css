@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap');
+* {
+  font-family: 'IM Fell English SC', serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: #fff;
+}
+
+body {
+  background-color: #000;
+}
+
+header {
+  margin-bottom: 30px;
+}
+
+nav {
+  height: auto;
+  padding: 2% 3%;
+}
+
+#nav-mobile li a span {
+  font-weight: bolder;
+  letter-spacing: 1px;
+  transition: 0.3s all;
+}
+
+#nav-mobile li a span:hover {
+  border-bottom: 1px solid rgba(255, 0, 0, 0.4);
+}
+
+.sidenav {
+  background-color: #000;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidenav li a span {
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 0, 0, 0.4);
+  font-size: 13pt;
+}
+
+.sidenav-trigger {
+  position: fixed;
+  top: 3.3%;
+  right: 4%;
+  color: #fff;
+}
+
+.banner {
+  width: auto;
+  max-width: 1084px;
+  height: 355px;
+  max-height: 355px;
+  background-image: url('http://2.bp.blogspot.com/-q2q8I6ogXs0/UoZ928dSUdI/AAAAAAAAGDg/h4P43tOwo0w/s1600/Topo_BlogAssombrado_Transparente_Moldura_preta_blur.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+main {
+  padding: 2% 3%;
+}
+
+main section .titulo {
+  border-bottom: 1px solid rgba(255, 0, 0, 0.2);
+}
+
+@media only screen and (max-width: 992px) {
+  nav .brand-logo {
+    width: fit-content;
+  }
+}
