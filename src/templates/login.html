@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login · Relatos Assombrados</title>
+    <!-- Fontawesome -->
+    <script
+      src="https://kit.fontawesome.com/ed7a8cb7c4.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/autenticacao/index.css" />
+    <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon" />
+  </head>
+  <body>
+    <div class="filter"></div>
+    <div class="alert alert-error"></div>
+    <div class="alert alert-success"></div>
+    <div class="login-container">
+      <div class="login-form">
+        <div class="logo-container">
+          <img src="./img/logo.svg" alt="" class="logo" />
+        </div>
+        <form action="#" class="form" id="form-login">
+          <p>Digite seus dados para entrar</p>
+          <input type="text" name="usuario" placeholder="Usuário" required />
+          <input type="password" name="senha" placeholder="Senha" required />
+          <div class="link-container">
+            <a href="#">Esqueci minha senha</a>
+          </div>
+          <button>Entrar</button>
+        </form>
+        <div class="link-container link-center">
+          <a href="/cadastro">Não tenho uma conta ainda</a>
+        </div>
+      </div>
+    </div>
+    <script>
+      const formLogin = document.querySelector('#form-login');
+      const alerts = document.querySelectorAll('.alert');
+      const alertError = document.querySelector('.alert-error');
+      const alertSuccess = document.querySelector('.alert-success');
+      formLogin.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let usuario = formLogin.usuario.value;
+        let senha = formLogin.senha.value;
+        let ponto = `Basic ${btoa(`${usuario}:${senha}`)}`;
+        headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', ponto);
+        fetch('/api/v1/usuarios/login', {
+          method: 'POST',
+          headers,
+        })
+          .then((res) => {
+            if (res.status === 200) {
+              alertSuccess.innerHTML =
+                'Tu logou e a gente vai te mandar pra um canto aí, meu querido gostoso lindo maravilhoso bucetudo e pauzudo! Te amo, lindo.';
+              alertSuccess.style.opacity = '1';
+              res.json().then((data) => {
+                localStorage.setItem('token', data.token);
+              });
+              setTimeout(() => {
+                document.location.href = '/';
+              }, 2500);
+            } else if (res.status === 401) {
+              alertError.innerHTML = 'Escrevesse algo errado aí, irmão.';
+              alertError.style.opacity = '1';
+            } else {
+              alertError.innerHTML = 'Deu merda.';
+              alertError.style.opacity = '1';
+            }
+          })
+          .catch(() => {
+            alertError.innerHTML = 'Deu merda.';
+            alertError.style.opacity = '1';
+          })
+          .finally(() => {
+            setTimeout(sumir, 2000);
+          });
+      });
+      function sumir() {
+        alerts.forEach((alert) => {
+          alert.style.opacity = '0';
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -20,6 +20,4 @@ export default async (server) => {
       };
     },
   });
-
-  server.auth.default('jwt');
 };

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro · Relatos Assombrados</title>
+    <!-- Fontawesome -->
+    <script
+      src="https://kit.fontawesome.com/ed7a8cb7c4.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/autenticacao/index.css" />
+    <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon" />
+  </head>
+  <body>
+    <div class="filter"></div>
+    <div class="alert alert-error"></div>
+    <div class="alert alert-success"></div>
+    <div class="login-container">
+      <div class="login-form">
+        <div class="logo-container">
+          <img src="./img/logo.svg" alt="" class="logo" />
+        </div>
+        <form action="" class="form" id="form-cadastro">
+          <p>Isso é tudo que precisamos saber</p>
+          <input type="text" name="usuario" placeholder="Usuário" required />
+          <input type="email" name="email" placeholder="Email" required />
+          <input type="password" name="senha" placeholder="Senha" required />
+          <select name="sexo" required>
+            <option value="" selected disabled>Sexo</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Feminino">Feminino</option>
+            <option value="Outro">Outro</option>
+          </select>
+          <button>Cadastrar</button>
+        </form>
+        <div class="link-container link-center">
+          <a href="/login">Já possuo uma conta</a>
+        </div>
+      </div>
+    </div>
+    <script>
+      const formCadastro = document.querySelector('#form-cadastro');
+      const alerts = document.querySelectorAll('.alert');
+      const alertError = document.querySelector('.alert-error');
+      const alertSuccess = document.querySelector('.alert-success');
+      formCadastro.addEventListener('submit', (e) => {
+        e.preventDefault();
+        data = {
+          usuario: formCadastro.usuario.value,
+          email: formCadastro.email.value,
+          senha: formCadastro.senha.value,
+          sexo: formCadastro.sexo.value,
+        };
+        headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        fetch('/api/v1/usuarios', {
+          method: 'POST',
+          body: JSON.stringify(data),
+          headers,
+        }).then((res) => {
+          console.log(res);
+          if (res.status === 201) {
+            alertSuccess.innerHTML = 'Usuário cadastrado com sucesso.';
+            alertSuccess.style.opacity = '1';
+          } else if (res.status === 400) {
+            alertError.innerHTML = 'Escrevesse algo errado aí, irmão.';
+            alertError.style.opacity = '1';
+          } else {
+            alertError.innerHTML = 'Deu merda.';
+            alertError.style.opacity = '1';
+          }
+          setTimeout(sumir, 2000);
+        });
+      });
+      function sumir() {
+        alerts.forEach((alert) => {
+          alert.style.opacity = '0';
+        });
+      }
+    </script>
+  </body>
+</html>

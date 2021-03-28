@@ -17,6 +17,11 @@
       type="image/x-icon"
     />
     <link rel="stylesheet" href="./css/main.css" />
+    <script>
+      // if (!localStorage.getItem('token')) {
+      //   window.location.href = '/login';
+      // }
+    </script>
   </head>
 
   <body>
@@ -37,7 +42,7 @@
           </ul>
         </div>
       </nav>
-
+      <h2><a href="#" onclick="logoutDeCorno()">DESLOGAR</a></h2>
       <ul id="slide-out" class="sidenav">
         <li>
           <a href="/"><span>Início</span></a>
@@ -59,7 +64,7 @@
     </header>
     <main>
       <section>
-        <h5 class="titulo">Últimos Relatos</h5>
+        <h5 class="titulo">MEU TOKEN <span id="token"></span></h5>
       </section>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -68,6 +73,13 @@
         var elems = document.querySelectorAll('.sidenav');
         var instances = M.Sidenav.init(elems);
       });
+      document.querySelector('#token').innerHTML = localStorage.getItem(
+        'token'
+      );
+      function logoutDeCorno() {
+        localStorage.clear();
+        document.location.href = '/login';
+      }
     </script>
   </body>
 </html>

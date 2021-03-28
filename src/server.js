@@ -30,7 +30,7 @@ import { fileURLToPath } from 'url';
   dotenv.config();
 
   await mongodb(server);
-  //await autenticacao(server);
+  await autenticacao(server);
   await vision(server);
   await inert(server);
   await cors(server);
