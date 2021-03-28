@@ -1,5 +1,27 @@
 import Joi from 'joi';
 
+// Banco de dados
+export const usuarioJaCadastrado = async (repository, usuario) => {
+  return new Promise(async (resolve, reject) => {
+    // Verificar usuário
+    let validarUsuario;
+    validarUsuario = await repository.get({
+      usuario: { $regex: new RegExp(usuario.usuario, 'i') },
+    });
+    if (validarUsuario) {
+      reject('Usuário já cadastrado');
+    }
+    validarUsuario = await repository.get({
+      email: { $regex: new RegExp(usuario.email, 'i') },
+    });
+    if (validarUsuario) {
+      reject('Email já registrado');
+    }
+    resolve(usuario);
+  });
+};
+
+// Models
 export const idValido = Joi.object({
   id: Joi.string().alphanum(),
 });

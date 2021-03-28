@@ -13,12 +13,20 @@ class MongoDbRepository {
   }
 
   async get(query = {}, options = {}) {
-    return this.collection.findOne(query, options);
+    try {
+      return this.collection.findOne(query, options);
+    } catch {
+      return undefined;
+    }
   }
 
   async getById(id) {
-    const _id = ObjectId.createFromHexString(id);
-    return this.get({ _id });
+    try {
+      const _id = ObjectId.createFromHexString(id);
+      return this.get({ _id });
+    } catch {
+      return undefined;
+    }
   }
 
   async insert(doc) {

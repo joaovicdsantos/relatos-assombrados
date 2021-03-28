@@ -1,12 +1,13 @@
-import UsuarioRepository from '../../repositories/UsuarioRepository.js';
 import Response from '../../models/Response.js';
 import { login } from '../../helpers/login.js';
 import { Boom } from '@hapi/boom';
-import { gerarHashSenha } from '../../helpers/bcrypt.js';
-
-const gerarRepository = (req) => {
-  return new UsuarioRepository(req.server.mongo.db);
-};
+import {
+  atualizarUmUsuario,
+  deletarUmUsuario,
+  obterTodosUsuarios,
+  obterUmUsuario,
+  salvarUmUsuario,
+} from '../../services/UsuariosServices.js';
 
 export default {
   login: async (req, h) => {
@@ -25,36 +26,27 @@ export default {
     }
   },
   obterUsuarios: async (req, h) => {
-    const repository = gerarRepository(req);
-    const result = await repository.list();
-    const response = new Response(200, result);
-    return h.response(response.toString());
+    const response = await obterTodosUsuarios(req.server.mongo.db);
+    return h.response(response);
   },
   obterUmUsuario: async (req, h) => {
-    const repository = gerarRepository(req);
-    const result = await repository.getById(req.params.id);
-    let response;
-    if (!result) response = new Response(404, {}, 'Nenhum usuário encontrado');
-    else response = new Response(200, result);
-    return h.response(response.toString()).code(response.statusCode);
+    const response = await obterUmUsuario(req.server.mongo.db, req.params.id);
+    return h.response(response).code(response.statusCode);
   },
   salvarUmUsuario: async (req, h) => {
-    const repository = gerarRepository(req);
-    req.payload.senha = await gerarHashSenha(req.payload.senha);
-    const result = await repository.insert(req.payload);
-    const response = new Response(201, result);
-    return h.response(response.toString()).code(response.statusCode);
+    const response = await salvarUmUsuario(req.server.mongo.db, req.payload);
+    return h.response(response).code(response.statusCode);
   },
   atualizarUmUsuario: async (req, h) => {
-    const repository = gerarRepository(req);
-    const result = await repository.update(req.params.id, req.payload);
-    const response = new Response(202, result);
-    return h.response(response.toString()).code(response.statusCode);
+    const response = await atualizarUmUsuario(
+      req.server.mongo.db,
+      req.params.id,
+      req.payload
+    );
+    return h.response(response).code(response.statusCode);
   },
   deletarUmUsuario: async (req, h) => {
-    const repository = gerarRepository(req);
-    const result = await repository.delete(req.params.id);
-    const response = new Response(204, result);
+    const response = await deletarUmUsuario(req.server.mongo.db, req.params.id);
     return h.response().code(response.statusCode);
   },
 };
