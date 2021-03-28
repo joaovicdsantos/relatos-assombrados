@@ -1,7 +1,7 @@
-import Response from '../../models/Response.js';
 import { login } from '../../helpers/login.js';
 import { Boom } from '@hapi/boom';
 import {
+  logar,
   atualizarUmUsuario,
   deletarUmUsuario,
   obterTodosUsuarios,
@@ -11,19 +11,13 @@ import {
 
 export default {
   login: async (req, h) => {
-    const { authorization } = req.headers;
-
-    if (!authorization) {
-      return new Boom('Você precisa mandar dados para login', {
-        statusCode: 401,
+    return logar(req.server.mongo.db, req.headers)
+      .then((token) => {
+        return h.response({ token });
+      })
+      .catch((error) => {
+        return new Boom(error, { statusCode: 401 });
       });
-    }
-    try {
-      const token = await login(authorization, req.server.mongo.db);
-      return h.response({ token });
-    } catch (error) {
-      return new Boom(error, { statusCode: 401 });
-    }
   },
   obterUsuarios: async (req, h) => {
     const response = await obterTodosUsuarios(req.server.mongo.db);

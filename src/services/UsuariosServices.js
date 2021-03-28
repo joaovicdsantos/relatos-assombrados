@@ -8,6 +8,21 @@ const gerarRepository = (conn) => {
   return new UsuarioRepository(conn);
 };
 
+export const logar = async (conn, headers) => {
+  return new Promise(async (resolve, reject) => {
+    const { authorization } = headers;
+
+    if (!authorization) {
+      reject('Você precisa mandar dados para login');
+    }
+    try {
+      resolve(await login(authorization, conn));
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 export const obterTodosUsuarios = async (conn) => {
   const repository = gerarRepository(conn);
   const result = await repository.list();
