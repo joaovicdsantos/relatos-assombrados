@@ -1,75 +1,89 @@
-@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap');
-* {
-  font-family: 'IM Fell English SC', serif;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  color: #fff;
-}
-
 body {
-  background-color: #000;
-}
-
-header {
-  margin-bottom: 30px;
-}
-
-nav {
-  height: auto;
-  padding: 2% 3%;
-}
-
-#nav-mobile li a span {
-  font-weight: bolder;
-  letter-spacing: 1px;
-  transition: 0.3s all;
-}
-
-#nav-mobile li a span:hover {
-  border-bottom: 1px solid rgba(255, 0, 0, 0.4);
-}
-
-.sidenav {
-  background-color: #000;
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.sidenav li a span {
-  color: #fff;
-  border-bottom: 1px solid rgba(255, 0, 0, 0.4);
-  font-size: 13pt;
-}
-
-.sidenav-trigger {
-  position: fixed;
-  top: 3.3%;
-  right: 4%;
-  color: #fff;
-}
-
-.banner {
-  width: auto;
-  max-width: 1084px;
-  height: 355px;
-  max-height: 355px;
-  background-image: url('http://2.bp.blogspot.com/-q2q8I6ogXs0/UoZ928dSUdI/AAAAAAAAGDg/h4P43tOwo0w/s1600/Topo_BlogAssombrado_Transparente_Moldura_preta_blur.png');
+  background-image: url('../../img/background.jpg');
+  background-attachment: fixed;
+  background-size: cover;
   background-repeat: no-repeat;
-  background-size: contain;
-  margin: 0 auto;
-  margin-top: 50px;
 }
 
-main {
-  padding: 2% 3%;
+.filter {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.35), rgb(0, 0, 0));
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: -1;
 }
 
-main section .titulo {
-  border-bottom: 1px solid rgba(255, 0, 0, 0.2);
+.menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 4%;
 }
 
-@media only screen and (max-width: 992px) {
-  nav .brand-logo {
-    width: fit-content;
+.btn-menu-mobile {
+  position: fixed;
+  top: 5.5%;
+  right: 5%;
+  background-color: #900000;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+@keyframes girinho {
+  from {
+    transform: rotate(0deg);
   }
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+.btn-menu-mobile i {
+  color: #fff;
+}
+
+i.hide {
+  display: none;
+}
+
+.menu-mobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  height: 100vh;
+  /* width: 80vw; */
+  width: 0px;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.menu-mobile .container {
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-mobile a {
+  margin-bottom: 15px;
+  font-size: 18px;
+  width: fit-content;
+  border-bottom: 1px solid rgba(144, 0, 0, 0.4);
+}
+
+.menu__links {
+  display: flex;
+  align-items: center;
+  width: 70%;
+}
+
+.menu__links a {
+  flex: 1;
+  text-align: center;
 }
