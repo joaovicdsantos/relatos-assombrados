@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
 
 * {
   font-family: 'IM Fell English SC', serif;
@@ -11,4 +12,67 @@
 
 a {
   text-decoration: none;
+}
+
+/* Carousel */
+.cards__carousel {
+  position: relative;
+}
+
+.cards__carousel .cards {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  flex-wrap: nowrap;
+  scroll-behavior: smooth;
+}
+
+.cards__carousel .cards .card {
+  flex: none;
+  width: 100%;
+  margin-right: 20px;
+}
+
+.cards__carousel .cards article:last-child {
+  margin-right: 0px;
+}
+
+.carousel__container {
+  position: absolute;
+  top: 0;
+  padding: 10px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 16pt;
+  transition: all 0.3s;
+}
+
+.carousel__container-right {
+  background-image: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.8));
+  right: 0;
+}
+
+.carousel__container-left {
+  background-image: linear-gradient(to left, transparent, rgba(0, 0, 0, 0.8));
+  left: 0;
+  opacity: 0;
+}
+
+.carousel__container-right:hover {
+  background-image: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.87));
+}
+
+.carousel__container-left:hover {
+  background-image: linear-gradient(to left, transparent, rgba(0, 0, 0, 0.87));
+}
+
+.carousel__container i {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.carousel__container:hover i {
+  color: rgba(255, 255, 255, 0.8);
 }

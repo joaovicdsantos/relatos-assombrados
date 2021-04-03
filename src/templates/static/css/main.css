@@ -18,6 +18,7 @@ body {
   justify-content: center;
   align-items: center;
   padding-top: 4%;
+  margin-bottom: 16px;
 }
 
 .btn-menu-mobile {
@@ -33,6 +34,7 @@ body {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  z-index: 1;
 }
 
 @keyframes girinho {
@@ -45,7 +47,7 @@ body {
 }
 
 .btn-menu-mobile i {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 i.hide {
@@ -62,6 +64,7 @@ i.hide {
   width: 0px;
   overflow: hidden;
   transition: 0.3s;
+  z-index: 1;
 }
 
 .menu-mobile .container {
@@ -86,4 +89,93 @@ i.hide {
 .menu__links a {
   flex: 1;
   text-align: center;
+}
+
+main.content {
+  width: 89%;
+  margin: 0 auto;
+}
+
+.topic {
+  margin-bottom: 15%;
+}
+
+.topic .topic__title {
+  padding-bottom: 2px;
+  width: fit-content;
+  border-bottom: 1px solid rgba(144, 0, 0, 0.8);
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.18rem;
+  margin-bottom: 16px;
+}
+
+.topic .topic__content {
+  padding: 3% 6%;
+}
+
+.cards .card {
+  background-color: #900000;
+  border-radius: 2px;
+  padding: 18px 20px;
+  text-align: center;
+}
+
+.cards-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cards-wrap .card {
+  margin-right: 5%;
+  margin-bottom: 5%;
+  padding: 9px 10px;
+}
+
+.card .card__title {
+  font-weight: normal;
+  font-family: 'Architects Daughter', cursive;
+  margin-bottom: 2px;
+  letter-spacing: 0.025em;
+  font-size: 14pt;
+}
+
+.card .card__description {
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'Architects Daughter', cursive;
+  margin-bottom: 9px;
+  font-weight: 100;
+  letter-spacing: 0.025em;
+}
+
+.card .card__meta {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card__meta .author {
+  font-family: 'Architects Daughter', cursive;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.025em;
+}
+
+.card__meta .date {
+  font-family: 'Architects Daughter', cursive;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.025em;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+footer span {
+  font-size: 14pt;
+  margin-bottom: 5px;
+}
+
+footer .social-media {
+  margin-bottom: 12px;
 }
